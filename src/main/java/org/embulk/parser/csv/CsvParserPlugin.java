@@ -19,6 +19,7 @@ package org.embulk.parser.csv;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.time.Instant;
 import java.time.format.DateTimeParseException;
@@ -52,7 +53,7 @@ import org.embulk.util.csv.CsvTokenizer;
 import org.embulk.util.csv.InvalidCsvFormatException;
 import org.embulk.util.csv.RecordHasUnexpectedTrailingColumnException;
 import org.embulk.util.json.JsonParseException;
-import org.embulk.util.json.JsonParser;
+import org.embulk.util.json.JsonValueParser;
 import org.embulk.util.text.LineDecoder;
 import org.embulk.util.text.LineDelimiter;
 import org.embulk.util.text.Newline;
@@ -316,7 +317,7 @@ public class CsvParserPlugin implements ParserPlugin {
             FileInput input, PageOutput output) {
         final PluginTask task = CONFIG_MAPPER_FACTORY.createTaskMapper().map(taskSource, PluginTask.class);
         final TimestampFormatter[] timestampFormatters = newTimestampColumnFormatters(task, task.getSchemaConfig());
-        final JsonParser jsonParser = new JsonParser();
+        final JsonValueParser.Builder jsonParserBuilder = JsonValueParser.builder();
         final CsvTokenizer.Builder tokenizerBuilder = buildCsvTokenizerBuilder(task);
         final boolean allowOptionalColumns = task.getAllowOptionalColumns();
         final boolean allowExtraColumns = task.getAllowExtraColumns();
@@ -419,8 +420,11 @@ public class CsvParserPlugin implements ParserPlugin {
                                         pageBuilder.setNull(column);
                                     } else {
                                         try {
-                                            pageBuilder.setJson(column, jsonParser.parse(v));
-                                        } catch (JsonParseException e) {
+                                            pageBuilder.setJson(column, jsonParserBuilder.build(v).readJsonValue());
+                                        } catch (final JsonParseException e) {
+                                            // TODO support default value
+                                            throw new CsvRecordValidateException(e);
+                                        } catch (final IOException e) {
                                             // TODO support default value
                                             throw new CsvRecordValidateException(e);
                                         }
