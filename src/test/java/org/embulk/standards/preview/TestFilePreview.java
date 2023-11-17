@@ -71,6 +71,11 @@ public class TestFilePreview {
                 "test_sample_buffer_bytes.csv", "test_sample_buffer_bytes_previewed.csv");
     }
 
+    @Test
+    public void testEndOfFileInQuote() throws Exception {
+        assertPreviewedRecords(embulk, "test_eof_in_quote_load.yml", "test_eof_in_quote.csv", "test_eof_in_quote_previewed.csv");
+    }
+
     private static void assertPreviewedRecords(TestingEmbulk embulk,
             String loadYamlResourceName, String sourceCsvResourceName, String resultCsvResourceName)
             throws IOException {
