@@ -338,13 +338,9 @@ public class CsvParserPlugin implements ParserPlugin {
                     }
                 }
 
-                try {
-                    if (!tokenizer.nextRecord()) {
-                        // empty file
-                        continue;
-                    }
-                } catch (final InvalidCsvFormatException ex) {
-                    throw new DataException(ex);
+                if (!tokenizer.nextRecord()) {
+                    // empty file
+                    continue;
                 }
 
                 while (true) {
@@ -473,6 +469,8 @@ public class CsvParserPlugin implements ParserPlugin {
             }
 
             pageBuilder.finish();
+        } catch (final InvalidCsvFormatException ex) {
+            throw new DataException(ex);
         }
     }
 
