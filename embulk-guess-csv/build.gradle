@@ -39,7 +39,7 @@ dependencies {
 
     implementation project(":")
     implementation "org.embulk:embulk-util-config:0.3.4"
-    implementation "org.embulk:embulk-util-csv:0.2.3"
+    implementation "org.embulk:embulk-util-csv:0.2.4"
     implementation "org.embulk:embulk-util-json:0.3.0"
     implementation "org.embulk:embulk-util-guess:0.3.2"
     implementation "org.embulk:embulk-util-rubytime:0.3.3"
