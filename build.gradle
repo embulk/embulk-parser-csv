@@ -209,3 +209,15 @@ checkstyle {
     ignoreFailures = false
     maxWarnings = 0  // https://github.com/gradle/gradle/issues/881
 }
+
+// Task ":compileTestJava" somehow uses this output of task ":jar" without declaring an explicit or implicit dependency.
+// TODO: Find the implicit dependency, and remove it.
+compileTestJava {
+    dependsOn ":jar"
+}
+
+// Task ":checkstyleTest" somehow uses this output of task ":jar" without declaring an explicit or implicit dependency.
+// TODO: Find the implicit dependency, and remove it.
+checkstyleTest {
+    dependsOn ":jar"
+}
