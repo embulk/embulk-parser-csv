@@ -2,7 +2,7 @@ plugins {
     id "java"
     id "maven-publish"
     id "signing"
-    id "org.embulk.embulk-plugins" version "0.5.5"
+    alias(libs.plugins.gradle.embulk.plugins)
     id "checkstyle"
 }
 
@@ -34,31 +34,35 @@ java {
 }
 
 dependencies {
-    compileOnly "org.embulk:embulk-spi:0.11"
-    compileOnly "org.slf4j:slf4j-api:2.0.7"
+    compileOnly libs.embulk.spi
+    compileOnly libs.slf4j
 
     implementation project(":")
-    implementation "org.embulk:embulk-util-config:0.3.4"
-    implementation "org.embulk:embulk-util-csv:0.2.4"
-    implementation "org.embulk:embulk-util-json:0.3.0"
-    implementation "org.embulk:embulk-util-guess:0.3.2"
-    implementation "org.embulk:embulk-util-rubytime:0.3.3"
-    implementation "org.embulk:embulk-util-timestamp:0.2.2"
 
-    testImplementation "junit:junit:4.13.2"
-    testImplementation "org.embulk:embulk-spi:0.10.50"
-    testImplementation "org.embulk:embulk-core:0.10.50"
-    testImplementation "org.embulk:embulk-deps:0.10.50"
-    testImplementation "org.embulk:embulk-junit4:0.10.50"
-    testImplementation "com.google.guava:guava:18.0"
+    implementation libs.embulk.util.config
+    implementation libs.validation
+    implementation libs.bundles.jackson
 
-    testImplementation "org.embulk:embulk-formatter-csv:0.10.42"
-    testImplementation "org.embulk:embulk-input-file:0.10.42"
-    testImplementation "org.embulk:embulk-output-file:0.10.42"
-    testImplementation "org.embulk:embulk-parser-csv:0.10.42"
-    testImplementation "org.embulk:embulk-guess-bzip2:0.10.42"
-    testImplementation "org.embulk:embulk-guess-gzip:0.10.42"
-    testImplementation "org.embulk:embulk-guess-json:0.10.42"
+    implementation libs.embulk.util.csv
+    implementation libs.embulk.util.guess
+    implementation libs.embulk.util.json
+    implementation libs.embulk.util.rubytime
+    implementation libs.embulk.util.timestamp
+
+    testImplementation libs.junit4
+    testImplementation libs.embulk.spi
+    testImplementation libs.embulk.core
+    testImplementation libs.embulk.deps
+    testImplementation libs.embulk.junit4
+    testImplementation libs.guava
+
+    testImplementation libs.embulk.formatter.csv
+    testImplementation libs.embulk.input.file
+    testImplementation libs.embulk.output.file
+    testImplementation libs.embulk.parser.csv
+    testImplementation libs.embulk.guess.bzip2
+    testImplementation libs.embulk.guess.gzip
+    testImplementation libs.embulk.guess.json
 }
 
 embulkPlugin {
