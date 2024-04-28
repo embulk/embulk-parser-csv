@@ -34,6 +34,8 @@ embulk-guess-csv = "0.10.42"
 embulk-guess-gzip = "0.10.42"
 embulk-guess-json = "0.10.42"
 
+checkstyle = "9.3"
+
 [libraries]
 
 embulk-spi = { group = "org.embulk", name = "embulk-spi", version.ref = "embulk-spi" }
