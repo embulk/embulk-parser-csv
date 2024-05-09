@@ -13,7 +13,7 @@ validation-api = "2.0.1.Final"
 # We choose Jackson with the latest patch release of the latest open branch.
 jackson = "2.16.2"
 
-embulk-util-csv = "0.2.4"
+embulk-util-csv = "0.3.0"
 embulk-util-file = "0.1.5"
 embulk-util-guess = "0.3.2"
 embulk-util-json = "0.4.0"
