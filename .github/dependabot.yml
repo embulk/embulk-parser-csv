@@ -16,6 +16,8 @@ updates:
       - dependency-name: "org.embulk:embulk-util-config"
       - dependency-name: "org.embulk:embulk-util-csv"
       - dependency-name: "org.embulk:embulk-util-file"
+      - dependency-name: "org.embulk:embulk-util-guess"
       - dependency-name: "org.embulk:embulk-util-json"
       - dependency-name: "org.embulk:embulk-util-text"
+      - dependency-name: "org.embulk:embulk-util-rubytime"
       - dependency-name: "org.embulk:embulk-util-timestamp"
