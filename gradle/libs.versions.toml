@@ -19,7 +19,7 @@ embulk-util-guess = "0.4.0"
 embulk-util-json = "0.5.0"
 embulk-util-text = "0.2.0"
 embulk-util-rubytime = "0.4.0"
-embulk-util-timestamp = "0.3.0"
+embulk-util-timestamp = "0.3.1"
 
 junit4 = "4.13.2"
 embulk-core = "0.11.0"
